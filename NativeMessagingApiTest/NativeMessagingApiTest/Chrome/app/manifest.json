@@ -5,12 +5,27 @@
   "version": "1.0",
   "manifest_version": 2,
   "description": "Send a message to a native application.",
+  "background": { "scripts": [ "jquery-2.0.0.min.js", "background.js" ] },
   "browser_action": {
-    "default_icon": "icon.jpg",
+    "default_icon": {
+      "19": "cnblogs_19.png",
+      "38": "cnblogs_38.png"
+    },
     "default_title": "NativeMessagingApiTest",
     "default_popup": "main.html"
   },
   "permissions": [
     "nativeMessaging"
-  ]
+    ,
+    "tabs",
+    "http://localhost/"
+  ],
+    "content_scripts":
+    [
+      {
+        "matches": [ "http://www.cnblogs.com/*" ],
+        "js": [ "jquery-2.0.0.min.js", "contentscript.js" ]
+      }
+    ]
+  
 }

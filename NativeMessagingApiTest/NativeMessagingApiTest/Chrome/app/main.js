@@ -24,6 +24,15 @@ function updateUiState() {
     }
 }
 function sendNativeMessage() {
+    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+        chrome.tabs.sendMessage(tabs[0].id, { message: "setTitel2" }, function (response) {
+            //var result = document.createElement("div")
+            //result.textContent = response.result       
+            //document.body.appendChild(result)
+            appendMessage("cnblog response message: <b>" + response.result + "</b>");
+        });
+    });  
+
     message = { "text": document.getElementById('input-text').value };
     port.postMessage(message);
     appendMessage("Sent message: <b>" + JSON.stringify(message) + "</b>");
@@ -37,6 +46,15 @@ function onDisconnected() {
     updateUiState();
 }
 function connect() {
+    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+        chrome.tabs.sendMessage(tabs[0].id, { message: "setTitel" }, function (response) {
+            //var result = document.createElement("div")
+            //result.textContent = response.result       
+            //document.body.appendChild(result)
+            appendMessage("cnblog response message: <b>" + response.result + "</b>");
+        });
+    });  
+
     var hostName = "com.my_company.my_application";
     appendMessage("Connecting to native messaging host <b>" + hostName + "</b>")
     port = chrome.runtime.connectNative(hostName);
@@ -50,4 +68,16 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('send-message-button').addEventListener(
         'click', sendNativeMessage);
     updateUiState();
+
+    var data = chrome.extension.getBackgroundPage().articleData;
+    if (data.error) {
+        $("#message").text(data.error);
+        $("#content").hide();
+    } else {
+        $("#message").hide();
+        $("#content-title").text(data.title);
+        $("#content-author").text(data.author);
+        $("#content-date").text(data.postDate);
+        $("#content-first-access").text(data.firstAccess);
+    }
 });

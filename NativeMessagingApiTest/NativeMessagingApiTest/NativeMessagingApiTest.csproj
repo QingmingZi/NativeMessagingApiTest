@@ -57,6 +57,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Chrome\app\background.js" />
+    <Content Include="Chrome\app\cnblogs_19.png" />
+    <Content Include="Chrome\app\cnblogs_38.png" />
+    <Content Include="Chrome\app\contentscript.js" />
+    <Content Include="Chrome\app\icon.jpg" />
+    <Content Include="Chrome\app\jquery-2.0.0.min.js" />
+    <Content Include="Chrome\app\main.css" />
     <Content Include="Chrome\app\main.html" />
     <Content Include="Chrome\app\main.js" />
     <Content Include="Chrome\web\index.html" />

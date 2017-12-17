@@ -8,34 +8,56 @@
   <head>
       <link rel="stylesheet" type="text/css" href="main.css" />
     <script src='./main.js'></script>
+      <style type="text/css">
+          .auto-style1 {
+              width: 432px;
+              white-space: nowrap;
+              overflow-x: hidden;
+              text-overflow: ellipsis;
+          }
+          .auto-style2 {
+              height: 28px;
+          }
+      </style>
   </head>
-  <body>
+  <body style="width: 552px">
     <button id='connect-button'>Connect</button>
-    <input id='input-text' type='text' />
+    <input id='input-text' type='text' /><table style="width:100%;">
+          <tr>
+              <td>
+                  <input id="txtFile" type="file" accept="application/json"/></td>
+          </tr>
+          <tr>
+              <td>
+                  <input id="txtPSW" type="password" /></td>
+          </tr>
+      </table>
     <button id='send-message-button'>Send</button>
     <div id='response'></div>
+      <button id='butGetData'>getData</button>
 
       <p id="message">加载中...</p>
 <div id="content">
 	<table>
 		<tr>
-			<td class="item-name" style="width:30%">标题</td>
-			<td style="width:70%"><div id="content-title" class="content-div">&nbsp;</div></td>
+			<td class="item-name" style="width:30%">addrIn</td>
+			<td style="width:70%"><div id="content-addrIn" class="auto-style1">&nbsp;</div></td>
 		</tr>
 		<tr>
-			<td class="item-name">作者</td>
-			<td><div id="content-author" class="content-div">&nbsp;</div></td>
+			<td class="item-name">addrOut</td>
+			<td><div id="content-addrOut" class="auto-style1">&nbsp;</div></td>
 		</tr>
 		<tr>
-			<td class="item-name">日期</td>
-			<td><div id="content-date" class="content-div">&nbsp;</div></td>
+			<td class="item-name">assetID</td>
+			<td><div id="content-assetID" class="auto-style1">&nbsp;</div></td>
 		</tr>
 		<tr>
-			<td class="item-name">首次访问</td>
-			<td><div id="content-first-access" class="content-div">&nbsp;</div></td>
+			<td class="item-name">amounts</td>
+			<td><div id="content-amounts" class="content-div">&nbsp;</div></td>
 		</tr>
 	</table>
+    <button id='butSendTx'>sendTx</button>
 </div>
   </body>
-    <script src="jquery-2.0.0.min.js"></script>
+    <script src="jquery-3.2.1.min.js"></script>
 </html>

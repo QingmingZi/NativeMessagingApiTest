@@ -5,27 +5,29 @@
   "version": "1.0",
   "manifest_version": 2,
   "description": "Send a message to a native application.",
-  "background": { "scripts": [ "jquery-2.0.0.min.js", "background.js" ] },
+  "background": { "scripts": [ "jquery-3.2.1.min.js", "background.js" ] },
   "browser_action": {
     "default_icon": {
-      "19": "cnblogs_19.png",
-      "38": "cnblogs_38.png"
+      "19": "NEL_19.png",
+      "38": "NEL_38.png"
     },
     "default_title": "NativeMessagingApiTest",
     "default_popup": "main.html"
   },
   "permissions": [
-    "nativeMessaging"
-    ,
+    "nativeMessaging",
     "tabs",
-    "http://localhost/"
+    "*://localhost/*" //允许被操作的域名
   ],
-    "content_scripts":
-    [
-      {
-        "matches": [ "http://www.cnblogs.com/*" ],
-        "js": [ "jquery-2.0.0.min.js", "contentscript.js" ]
-      }
-    ]
-  
+  "content_scripts": [
+    {
+      "matches": [ "*://localhost/*" ], //允许注入的域名
+      "js": [ "jquery-3.2.1.min.js", "jquery.jsonrpc.js", "contentscript.js" ]
+    }
+  ]
+  //,
+  //"externally_connectable": {
+  //  "matches": [ "*://localhost/*" ] //允许发起调用扩展的域名
+  //}
+
 }
